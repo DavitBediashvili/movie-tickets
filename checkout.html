@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cinema Checkout</title>
+  <link rel="stylesheet" type="text/css" href="checkoutc.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Checkout</h1>
+    <div id="movie_container" class="movie-container">
+      
+    </div>
+    <form>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="card">Card Number:</label>
+        <input type="text" id="card" name="card" required>
+      </div>
+      <div class="form-group">
+        <label for="expiry">Expiry Date:</label>
+        <input type="text" id="expiry" name="expiry" required>
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit</button>
+        <button id="home" type="submit">Home</button>
+      </div>
+    </form>
+  </div>
+  <script src="./checkoutjs.js"></script>
+</body>
+</html>

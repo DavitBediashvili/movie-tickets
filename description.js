@@ -11,6 +11,8 @@ const similar = document.getElementById("similar");
 
 const rowSeat = document.getElementById("rowSeat");
 
+const buy = document.getElementById("buy");
+
 // აქ ლოკალურ მონაცეამთა ბაზიდან ამოვიღეთ ინორმაცია
 const movie = localStorage.getItem("movie");
 console.log(JSON.parse(movie));
@@ -176,19 +178,20 @@ function getClassByVote(vote) {
 const seats = [
   {
     id: [21,22,23,24,25,26,27,28,29,30],
-    price: 15,
+    price: 15.5,
   },
   {
     id: [11,12,13,14,15,16,17,18,19,20],
-    price: 12,
+    price: 12.5,
   },
   {
     id: [1,2,3,4,5,6,7,8,9,10],
-    price: 10,
+    price: 10.5,
   },
 ];
 
 
+var buy_Dictionary = {};
 seats.forEach((each) => {
     const rows = document.createElement("div");
     rows.innerHTML = `
@@ -205,17 +208,22 @@ seats.forEach((each) => {
         `;
         eachRow.appendChild(place);
         place.addEventListener("click", () => {
-          const buying = {
-            id: one,
-            price: each.price,
-          };
-          // აქედან ჩაემატა
-          localStorage.setItem("buying", JSON.stringify(buying));
-          // ახალ გვერდზე გადაგიყვანოს
-          window.location = "checkout.html";
+          var elementToChange = document.getElementById(one);
+          if (buy_Dictionary.hasOwnProperty(one)) {
+            delete buy_Dictionary[one];
+            elementToChange.style.backgroundColor = "rgb(74, 74, 222)";
+          } else {
+            buy_Dictionary[one] = each.price;
+            elementToChange.style.backgroundColor = "red";
+          }
         });
 
     });
+});
+
+buy.addEventListener("click", () => {
+    localStorage.setItem("buying", JSON.stringify(buy_Dictionary));
+    window.location = "checkout.html";
 });
 
 

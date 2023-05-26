@@ -9,6 +9,11 @@ const movieData = JSON.parse(movie);
 const seat = localStorage.getItem("buying");
 const seatData = JSON.parse(seat);
 
+const selectedSeats = Object.keys(seatData).join(', ');
+
+const seatPrices = Object.values(seatData);
+const totalPrice = seatPrices.reduce((sum, price) => sum + price, 0);
+
 // ახალი დივი შევქმენით
 const moviePoster = document.createElement("div");
 // კლასი რომლეიც არის bootstrap კლასი
@@ -30,7 +35,7 @@ movieDesc.setAttribute("id", "poster");
 movieDesc.innerHTML = `
     <div id="movie_info" class="movie-info">
         <h2 class="movie-title">${movieData.title}</h2>
-        <p class="seat-info">Selected Seat: ${seatData.id} <br> price: ${seatData.price}$</p>
+        <p class="seat-info">Selected Seat: ${selectedSeats} <br> price: ${totalPrice}$</p>
     </div> 
 `;
 movie_info.appendChild(movieDesc);
